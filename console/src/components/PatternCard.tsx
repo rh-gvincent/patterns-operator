@@ -28,7 +28,7 @@ import './PatternCard.css';
 
 type CloudLabelKey = 'aws' | 'gcp' | 'azure';
 
-const CLOUD_LABELS: Record<CloudLabelKey, string> = {
+const CLOUD_LABELS: Record<CloudLabelKey, string> & Record<string, string> = {
   aws: 'AWS',
   gcp: 'GCP',
   azure: 'Azure',
@@ -164,9 +164,7 @@ export default function PatternCard({
   const clouds = getCloudProviders(pattern);
 
   return (
-    <Card
-      className={isDisabled ? 'patterns-operator__card--disabled' : ''}
-    >
+    <Card className={isDisabled ? 'patterns-operator__card--disabled' : ''}>
       <CardHeader>
         <Flex
           justifyContent={{ default: 'justifyContentSpaceBetween' }}
@@ -215,8 +213,8 @@ export default function PatternCard({
                       aria-label={t('Tested requirements details')}
                       maxWidth="500px"
                       isVisible={isVisible}
-                      shouldOpen={(_event, _fn) => setIsVisible(true)}
-                      shouldClose={(_event, _fn) => setIsVisible(false)}
+                      shouldOpen={() => setIsVisible(true)}
+                      shouldClose={() => setIsVisible(false)}
                       headerContent={t('Tested requirements')}
                       bodyContent={<RequirementsPopoverBody pattern={pattern} clouds={clouds} />}
                     >
