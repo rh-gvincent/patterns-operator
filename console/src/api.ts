@@ -495,10 +495,10 @@ export async function fetchVaultJobStatus(patternName: string): Promise<VaultJob
       creationTimestamp: job.metadata?.creationTimestamp,
       status: jobStatus,
       conditions:
-        jobStatus.conditions?.map((c: ResourceCondition) => ({
-          type: c.type,
-          status: c.status,
-          reason: c.reason,
+        jobStatus.conditions?.map((condition: ResourceCondition) => ({
+          type: condition.type,
+          status: condition.status,
+          reason: condition.reason,
         })) || [],
     });
 

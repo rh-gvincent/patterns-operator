@@ -28,7 +28,7 @@ import './PatternCard.css';
 
 type CloudLabelKey = 'aws' | 'gcp' | 'azure';
 
-const CLOUD_LABELS: Record<CloudLabelKey, string> & Record<string, string> = {
+const CLOUD_LABELS: Record<CloudLabelKey, string> = {
   aws: 'AWS',
   gcp: 'GCP',
   azure: 'Azure',
@@ -114,7 +114,7 @@ function RequirementsPopoverBody({ pattern, clouds }: { pattern: Pattern; clouds
       {clouds.map((cloud) => (
         <StackItem key={cloud}>
           <Label color="blue" isCompact>
-            {CLOUD_LABELS[cloud] || cloud}
+            {CLOUD_LABELS[cloud as CloudLabelKey] || cloud}
           </Label>
           <Table variant="compact" borders={false}>
             <Thead>
@@ -233,7 +233,7 @@ export default function PatternCard({
                   <LabelGroup>
                     {clouds.map((cloud) => (
                       <Label key={cloud} color="blue" isCompact>
-                        {CLOUD_LABELS[cloud] || cloud}
+                        {CLOUD_LABELS[cloud as CloudLabelKey] || cloud}
                       </Label>
                     ))}
                   </LabelGroup>
